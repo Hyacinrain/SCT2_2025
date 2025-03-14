@@ -7,30 +7,31 @@ using Random = UnityEngine.Random;
 public class AIWander : AIBase
 {
     [SerializeField] private float wanderRadius;
-    private Vector3 _initialposition;
+    private Vector3 _initialPosition;
     private Vector3 _randomEndPoint;
 
     protected override void Start()
     {
         base.Start();
-
-        _initialposition = transform.position;
+        
+        _initialPosition = transform.position;
         SetNewRandomPoint();
     }
 
     private void Update()
     {
-        if (!agent.enabled) return;
+        if(!agent.enabled) return;
 
         if (agent.remainingDistance <= breakingDistance && !agent.pathPending)
         {
             SetNewRandomPoint();
         }
     }
+
     private void SetNewRandomPoint()
     {
-        _randomEndPoint = _initialposition + Random.insideUnitSphere * wanderRadius;
-        _randomEndPoint.y = 0; // We don't want the enemy to wander up or down
+        _randomEndPoint = _initialPosition + Random.insideUnitSphere * wanderRadius;
+        _randomEndPoint.y = 0;
         
         agent.SetDestination(_randomEndPoint);
     }
@@ -38,7 +39,7 @@ public class AIWander : AIBase
     protected override void OnEnable()
     {
         base.OnEnable();
-        _initialposition = transform.position;
+        _initialPosition = transform.position;
     }
 
     private void OnDrawGizmos()

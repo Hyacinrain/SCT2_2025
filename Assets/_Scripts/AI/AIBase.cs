@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
-[RequireComponent(typeof(NavMeshAgent), typeof(EnemyBehaviour))]
 
+[RequireComponent(typeof(NavMeshAgent), typeof(EnemyBehaviour))]
 public abstract class AIBase : MonoBehaviour
 {
     protected EnemyBehaviour enemyBehaviour;
@@ -14,7 +15,6 @@ public abstract class AIBase : MonoBehaviour
         enemyBehaviour = GetComponent<EnemyBehaviour>();
         agent.stoppingDistance = breakingDistance;
     }
-
 
     protected virtual void OnEnable()
     {
